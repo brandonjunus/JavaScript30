@@ -63,12 +63,40 @@
       position: absolute;
       top: 50%;
     }
-
+    
   </style>
 
   <script>
 
-
+    let hours = new Date().getHours() % 12;
+    let hourHand = document.getElementsByClassName('hour-hand')[0];
+    hourHand.setAttribute('style', `transform: rotate(${90 + ((360 / 12) * hours)}deg); transform-origin: bottom right;`)
+    
+    let minutes = new Date().getMinutes();
+    let minutesHand = document.getElementsByClassName('min-hand')[0];
+    minutesHand.setAttribute('style', `transform: rotate(${90 + ((360 / (60)) * minutes)}deg); transform-origin: bottom right;`)
+    
+    let seconds = new Date().getSeconds();
+    let secondsHand = document.getElementsByClassName('second-hand')[0];
+    secondsHand.setAttribute('style', `transform: rotate(${90 + ((360 / (60)) * seconds)}deg); transform-origin: bottom right;`)
+    
+    setInterval(() => {
+      let seconds = new Date().getSeconds();
+      let secondsHand = document.getElementsByClassName('second-hand')[0];
+      secondsHand.setAttribute('style', `transform: rotate(${90 + ((360 / (60)) * seconds)}deg); transform-origin: bottom right;`)
+      
+      let hours = new Date().getHours() % 12;
+      let hourHand = document.getElementsByClassName('hour-hand')[0];
+      hourHand.setAttribute('style', `transform: rotate(${90 + ((360 / 12) * hours)}deg); transform-origin: bottom right;`)
+      
+      let minutes = new Date().getMinutes();
+      let minutesHand = document.getElementsByClassName('min-hand')[0];
+      minutesHand.setAttribute('style', `transform: rotate(${90 + ((360 / (60)) * minutes)}deg); transform-origin: bottom right;`)
+    }, 1000);
+    
+    // console.log('seconds', seconds);
+    
+    
   </script>
 </body>
 </html>
