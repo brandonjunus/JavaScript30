@@ -22,6 +22,17 @@
 
   <style>
 
+    :root {
+      --base: red;
+      --spacing: 100px;
+      --blur: 10px;
+    }
+
+    img {
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+      background: var(--base);
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -45,6 +56,23 @@
   </style>
 
   <script>
+    let inputs = document.querySelectorAll('.controls input');
+    let handleUpdate = (e) => {
+      const suffix = this.dataset.sizing || '';
+      let { id } = e.target;
+      let image = document.querySelector('img');
+      if (id === 'spacing'){
+        image.style.setProperty('--spacing', `${this.value}${suffix}`);
+      } else if (id === 'blur'){
+        image.style.setProperty('--blur', `${this.value}${suffix}`);
+      } else if (id === 'base'){ 
+        image.style.setProperty('--base', `${this.value}${suffix}`);
+      }
+      
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
   </script>
 
 </body>
