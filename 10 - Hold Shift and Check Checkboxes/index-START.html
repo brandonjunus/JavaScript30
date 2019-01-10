@@ -96,6 +96,43 @@
   </div>
 
 <script>
+  let checkBoxes = document.querySelectorAll('.inbox input');
+  let lastPressed
+  let toCheck = false;
+  checkBoxes.forEach(checkBox => checkBox.addEventListener('click', (e) => {
+    if (e.shiftKey && lastPressed) {
+      // console.log([...checkBoxes].indexOf(e.target));
+      if ([...checkBoxes].indexOf(e.target) > [...checkBoxes].indexOf(lastPressed)) {
+        for (let i = 0; i < checkBoxes.length; i++) {
+          if (!toCheck) {
+            if (checkBoxes[i] === lastPressed) {
+              toCheck = true
+            }
+          } else {
+            checkBoxes[i].checked = true;
+            if (checkBoxes[i] === e.target) {
+              toCheck = false;
+            }
+          }
+        }
+      } else {
+        for (let i = checkBoxes.length; i > 0; i--) {
+          if (!toCheck) {
+            if (checkBoxes[i] === lastPressed) {
+              toCheck = true
+            }
+          } else {
+            checkBoxes[i].checked = true;
+            if (checkBoxes[i] === e.target) {
+              toCheck = false;
+            }
+          }
+        }
+      }
+    } else {
+      lastPressed = e.target;
+    }
+  }))
 </script>
 </body>
 </html>
