@@ -16,7 +16,38 @@
   </form>
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+let search = document.querySelector('.search').addEventListener('input', (e) => {
+  // console.log(e.target.value);
+  fetch(endpoint)
+    .then(r => r.json())
+    .then(r => r.filter(cityObj => cityObj.city.toLowerCase().includes(e.target.value.toLowerCase())))
+    .then(r => {
+      let suggestionsSection = document.querySelector('.suggestions');
+      while (suggestionsSection.firstChild) {
+        suggestionsSection.removeChild(suggestionsSection.firstChild);
+      }
+      r.forEach(cityObj => {
+        let { city, state, population } = cityObj;
+        let cityLI = document.createElement('li');
+        let cityText = document.createTextNode(`${city}, ${state}`);
 
+        let populationSpan = document.createElement('span')
+        populationSpan.classList.add('population');
+        let populationWithCommas = population.split('');
+        let counter = 0;
+        for (let i = populationWithCommas.length; i > 0; i -= 1) {
+          if (counter % 3 === 0 && counter !== 0) {
+            populationWithCommas.splice(i, 0, ',')
+          }
+          counter += 1;
+        } 
+        populationSpan.append(populationWithCommas.join(''));
+
+        cityLI.append(cityText, populationSpan);
+        suggestionsSection.appendChild(cityLI)
+      });
+    });
+});
 </script>
 </body>
 </html>
