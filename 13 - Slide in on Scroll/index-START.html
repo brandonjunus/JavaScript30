@@ -58,6 +58,16 @@
       };
     }
 
+  let last_known_scroll_position = window.scrollY;
+  let imgs = document.querySelectorAll('img');
+  window.addEventListener('scroll', () => {
+    last_known_scroll_position = window.scrollY;
+    for (let i = 0; i < imgs.length; i++) {
+      if (last_known_scroll_position >= imgs[i].y) {
+        imgs[i].classList.add('active');
+      }
+    }
+  })
   </script>
 
   <style>
