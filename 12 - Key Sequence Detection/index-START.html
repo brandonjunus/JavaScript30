@@ -10,14 +10,14 @@
   let konamiCode = [];
   let correctKonamiCode = ["ArrowUp", "ArrowDown", "ArrowUp", "ArrowDown"];
   window.addEventListener('keydown', (e) => {
-
     konamiCode.push(e.key);
     let lastInput = konamiCode.length - 1;
     if (konamiCode[lastInput] !== correctKonamiCode[lastInput]) {
       konamiCode = [];
     }
     if (konamiCode.length === correctKonamiCode.length) {
-      alert ('you did the konami code');
+      // alert ('you did the konami code');
+      cornify_add();
     }
   })
 </script>
