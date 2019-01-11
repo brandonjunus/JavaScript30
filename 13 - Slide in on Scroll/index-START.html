@@ -60,14 +60,18 @@
 
   let last_known_scroll_position = window.scrollY;
   let imgs = document.querySelectorAll('img');
-  window.addEventListener('scroll', () => {
+  let detectScroll = () => {
     last_known_scroll_position = window.scrollY;
+    console.log(last_known_scroll_position);
     for (let i = 0; i < imgs.length; i++) {
       if (last_known_scroll_position >= imgs[i].y) {
         imgs[i].classList.add('active');
       }
     }
-  })
+  }
+  let detectScroll2 = debounce(detectScroll);
+  
+  window.addEventListener('scroll', detectScroll2);
   </script>
 
   <style>
