@@ -42,7 +42,22 @@
 
 <button></button>
 <script>
-
+  // takeaways 
+    // bubbling basically takes the event and does it on every parent, then the chrome tab, then chrome, then the window.. etc. 
+    // you can do it the other way by using caputuring
+    // addeventlistener takes three arguements 
+      // 1. the type of event, 
+      // 2. callback
+      // 3. an options object, with
+        // capture -> boolean [false] that uses capturing rather than bubbling
+        // once -> boolean [false] that removes the event handler after its been used
+        // passive -> boolean [false] if true it will stop any prevent default
+  document.querySelectorAll('div').forEach(element => {
+    element.addEventListener('click', (e) => {
+      e.stopPropagation();
+      console.dir(element);
+    }, {once: true})
+  });
 </script>
 </body>
 </html>
