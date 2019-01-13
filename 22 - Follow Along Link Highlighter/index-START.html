@@ -27,6 +27,20 @@
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    let body = document.querySelector('body');
+    let previousHighlight;
+    body.addEventListener('mouseover', (e) => {
+      if (e.target.matches('a')){
+        if (!previousHighlight) {
+          e.target.classList.add('highlight')
+          previousHighlight = e.target;
+        } else {
+          previousHighlight.classList.remove('highlight');
+          previousHighlight = e.target;
+          e.target.classList.add('highlight')
+        }
+      }
+    })
   </script>
 </body>
 </html>
