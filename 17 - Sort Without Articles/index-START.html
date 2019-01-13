@@ -48,7 +48,20 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+let articles = new Set();
+articles.add('The');
+articles.add('An');
+articles.add('A');
 
+let sortedBands = bands.sort((a, b) => {
+  let aArr = articles.has(a.split(' ')[0]) ? a.split(' ')[1] : a.split(' ')[0];
+  let bArr = articles.has(b.split(' ')[0]) ? b.split(' ')[1] : b.split(' ')[0];
+  return aArr < bArr ? -1 : 1;
+})
+
+document.querySelector('#bands').innerHTML = sortedBands
+  .map(band => `<li>${band}</li>`)
+  .join('')
 </script>
 
 </body>
