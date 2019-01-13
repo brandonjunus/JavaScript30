@@ -182,6 +182,21 @@
     </li>
   </ul>
 <script>
+  let times = document.querySelectorAll('[data-time]');
+  let timesArr = [...times]
+    .map(x => x.dataset.time)
+    .reduce((a, b) => {
+      a[0] = a[0] + Number(b.split(':')[0]);
+      a[1] = a[1] + Number(b.split(':')[1]);
+      return [a[0], a[1]]
+    }, [0,0])
+  
+  let addedMins = Math.floor(timesArr[1] / 60);
+  let remainingSec = timesArr[1] % 60;
+  timesArr[0] += addedMins;
+  let addedHours = Math.floor(timesArr[0] / 60);
+  let remainingMins = timesArr[0] % 60;
+  console.log(addedHours, remainingMins, remainingSec); 
 </script>
 </body>
 </html>
