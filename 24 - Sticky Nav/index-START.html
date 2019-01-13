@@ -54,7 +54,17 @@
   </div>
 
 <script>
-
+  let nav = document.querySelector('nav');
+  let { offsetTop, offsetHeight } = nav;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > offsetTop) {
+      nav.classList.add('sticky');
+      document.querySelector('body').setAttribute('style', `padding-top: ${offsetHeight}px`)
+    } else {
+      document.querySelector('body').setAttribute('style', `padding-top: 0px`)
+      nav.classList.remove('sticky');
+    }
+  })
 </script>
 
 </body>

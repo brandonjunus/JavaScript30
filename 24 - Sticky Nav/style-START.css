@@ -50,6 +50,13 @@ nav {
   z-index: 1;
 }
 
+
+.sticky {
+  position: fixed;
+  top: 0;
+  /* width: 100%; */
+}
+
 nav ul {
   margin: 0;
   padding:0;
