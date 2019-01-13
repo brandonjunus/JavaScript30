@@ -38,7 +38,12 @@
 <script>
   let text = document.querySelector('.hero h1');
   var rect = text.getBoundingClientRect();
-  let {x: offsetWidth, y: offsetHeight} = rect;
+  console.log('rect', rect);
+  // let {x: offsetWidth, y: offsetHeight} = rect;
+  let offsetWidth = (rect.right + rect.left) / 2;
+  let offsetHeight = (rect.bottom + rect.top) / 2;
+  console.log('width', offsetWidth);
+  console.log('Height', offsetHeight);
   let x, y;
   window.addEventListener('mousemove', (e) => {
     x = e.x;
@@ -46,7 +51,7 @@
     console.log(x, y)
     // text.style.textShadow = `${x}px ${y}px 0 rgba(255,0,255,0.7);`
     // text.style.cssText = `${x}px ${y}px 0 rgba(255,0,255,0.7);`
-    text.setAttribute('style', `text-shadow: ${x > offsetWidth ? -.025 * (x - offsetWidth): .025 * (offsetWidth - x)}px ${y > offsetHeight ? -.025 * (y - offsetHeight): .025 * (offsetHeight - y)}px 0 rgba(255,0,255,0.7);`);
+    text.setAttribute('style', `text-shadow: ${x > offsetWidth ? -.04 * (x - offsetWidth): .04 * (offsetWidth - x)}px ${y > offsetHeight ? -.04 * (y - offsetHeight): .04 * (offsetHeight - y)}px 0 rgba(255,0,255,0.7);`);
   })
 </script>
 </body>
