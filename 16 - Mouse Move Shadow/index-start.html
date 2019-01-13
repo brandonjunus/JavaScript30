@@ -30,11 +30,24 @@
 
   h1 {
     text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    /* text-shadow: 100px 10px 0 rgba(255,0,255,0.7); */
     font-size: 100px;
   }
   </style>
 
 <script>
+  let text = document.querySelector('.hero h1');
+  var rect = text.getBoundingClientRect();
+  let {x: offsetWidth, y: offsetHeight} = rect;
+  let x, y;
+  window.addEventListener('mousemove', (e) => {
+    x = e.x;
+    y = e.y;
+    console.log(x, y)
+    // text.style.textShadow = `${x}px ${y}px 0 rgba(255,0,255,0.7);`
+    // text.style.cssText = `${x}px ${y}px 0 rgba(255,0,255,0.7);`
+    text.setAttribute('style', `text-shadow: ${x > offsetWidth ? -.025 * (x - offsetWidth): .025 * (offsetWidth - x)}px ${y > offsetHeight ? -.025 * (y - offsetHeight): .025 * (offsetHeight - y)}px 0 rgba(255,0,255,0.7);`);
+  })
 </script>
 </body>
 </html>
