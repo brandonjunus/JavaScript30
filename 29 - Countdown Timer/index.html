@@ -9,7 +9,7 @@
 <body>
   <div class="timer">
     <div class="timer__controls">
-      <button data-time="20" class="timer__button">20 Secs</button>
+      <button data-time="2" class="timer__button">20 Secs</button>
       <button data-time="300" class="timer__button">Work 5</button>
       <button data-time="900" class="timer__button">Quick 15</button>
       <button data-time="1200" class="timer__button">Snack 20</button>
@@ -23,7 +23,34 @@
       <p class="display__end-time"></p>
     </div>
   </div>
+  <script>
+    let timeButtons = document.querySelector('.timer__controls');
+    let timeLeft = document.querySelector('.display__time-left');
+    let timeStop = document.querySelector('.display__end-time');
+    let intervalId;
+    
+    timeButtons.addEventListener('click', (e) => {
+      clearInterval(intervalId);
+      let { time } = e.target.dataset;
+      timeLeft.innerHTML = time;
 
-  <script src="scripts-START.js"></script>
+      let currTime = new Date();
+      let endMins = currTime.getMinutes() + Math.floor(time / 60);
+      timeStop.innerHTML = endMins;
+
+
+      intervalId = setInterval(() => {
+        if (time === 1) {
+          clearInterval(intervalId);
+          timeLeft.innerHTML = 'TIMES UP'
+        } else {
+          time--;
+          timeLeft.innerHTML = time;
+        }
+        
+      }, 1000);
+    })
+  </script>
+  <!-- <script src="scripts-START.js"></script> -->
 </body>
 </html>
