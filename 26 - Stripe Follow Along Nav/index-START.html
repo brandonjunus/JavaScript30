@@ -222,30 +222,32 @@
 <script>
   let navItems = document.querySelector('.cool').children;
   let dropdownBackground = document.querySelector('.dropdownBackground');
+  let nav = document.querySelector('.top');
+  let navCoords = nav.getBoundingClientRect();
   let currentDisplay;
   [...navItems].forEach(item => {
     item.addEventListener('mouseover', () => {
       [...item.children].forEach(child => {
         if (child.matches('.dropdown')) {
           let childPosition = child.getBoundingClientRect();
+          let DDBP = dropdownBackground.getBoundingClientRect();
           dropdownBackground.setAttribute('style', 
           `opacity: 100;
           width: ${childPosition.width}px;
           height: ${childPosition.height}px;
           left: ${childPosition.left}px;
-          top: ${childPosition.y - 50}px;
+          top: ${childPosition.top - navCoords.top}px;
           `);
-          let DDBP = dropdownBackground.getBoundingClientRect();
           DDBP.top = childPosition.top;
           console.log('childPosition', childPosition);
           console.dir(dropdownBackground.getBoundingClientRect());
           if (!currentDisplay) {
-            currentDisplay = child;
-            currentDisplay.setAttribute('style', 'opacity: 100; display: block;');
+              currentDisplay = child;
+              currentDisplay.setAttribute('style', 'opacity: 100; display: block;');
           } else {
-            currentDisplay.setAttribute('style', 'opacity: 0; display: none;')
-            currentDisplay = child;
-            currentDisplay.setAttribute('style', 'opacity: 100; display: block;')
+              currentDisplay.setAttribute('style', 'opacity: 0; display: none;')
+              currentDisplay = child;
+              currentDisplay.setAttribute('style', 'opacity: 100; display: block;')
           }
         }
       })
